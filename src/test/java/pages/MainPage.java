@@ -11,9 +11,10 @@ import static io.qameta.allure.Allure.step;
 
 public class MainPage {
 
-    // Селектор для всплывающего окна выбора города
+    // Селекторы для всплывающего окон начальной страницы
     private final SelenideElement popupCloseButton = $$("div.chg-app-button__content").findBy(text("Да, я здесь"));
-    private final SelenideElement footerPopup = $("div.popmechanic-close");
+    private final SelenideElement popupCloseButton2 = $("div.popmechanic-close");
+    private final SelenideElement popupCloseButton3 = $("button.chg-app-button--secondary.chg-app-button--xs");
 
     // Селектор для первого ряда книг
     private final SelenideElement firstBookRow = $$("a.custom-link__has-link").findBy(text("Новинки литературы"));
@@ -25,8 +26,8 @@ public class MainPage {
     public MainPage open() {
         step("Открыть главную страницу сайта", () -> {
             Selenide.open(BASE_URL);
-            sleep(300);
-            closePopupIfPresent();
+            sleep(2000);
+            closePopupsIfPresent();
         });
         return this;
     }
@@ -36,7 +37,8 @@ public class MainPage {
         SelenideElement searchField = $("[name='search']");
         step("Осуществить поиск товара " + query, () -> {
             searchField.setValue(query).sendKeys(Keys.ENTER);
-            closePopupIfPresent();
+            $("button.search-form__button-search").shouldBe(visible).click();
+            sleep(500);
         });
         return this;
     }
@@ -89,9 +91,15 @@ public class MainPage {
     }
 
     // Метод закрытия всплывающего окна
-    private void closePopupIfPresent() {
+    private void closePopupsIfPresent() {
         if (popupCloseButton.isDisplayed()) {
-            popupCloseButton.click();
+            popupCloseButton.shouldBe(visible).click();
+        }
+        if (popupCloseButton2.isDisplayed()) {
+            popupCloseButton2.shouldBe(visible).click();
+        }
+        if (popupCloseButton3.isDisplayed()) {
+            //popupCloseButton3.shouldBe(visible).click();
         }
     }
 
