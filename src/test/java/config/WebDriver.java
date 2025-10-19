@@ -37,11 +37,9 @@ public class WebDriver {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments(
                 "--no-sandbox",
-                "--enable-automation",
-                "--disable-popup-blocking",
-                "--disable-notifications",
+                "--disable-dev-shm-usage",
                 "--disable-gpu",
-                "--user-data-dir=/tmp/selenoid-profile-" + System.nanoTime()
+                "--disable-notifications"
         );
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
