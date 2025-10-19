@@ -33,17 +33,6 @@ public class WebDriver {
             capabilities.setCapability("enableVideo", true);
         }
 
-        // Настройки Chrome
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments(
-                "--headless=new",
-                "--no-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-gpu",
-                "--disable-notifications"
-        );
-        capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-
         Configuration.browserCapabilities = capabilities;
     }
 }
