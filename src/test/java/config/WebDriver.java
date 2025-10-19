@@ -12,8 +12,7 @@ public class WebDriver {
     private static final WebConfig CONFIG = ConfigFactory.create(WebConfig.class, System.getProperties());
     private static final UrlConfig URL_CONFIG = ConfigFactory.create(UrlConfig.class, System.getProperties());
 
-    public static final String baseUrl = URL_CONFIG.baseURL();
-    public static final String fileUrl = URL_CONFIG.downloadFileURL();
+    public static final String BASE_URL = URL_CONFIG.baseURL();
 
     public static void configure() {
 

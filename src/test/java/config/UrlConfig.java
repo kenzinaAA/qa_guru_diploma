@@ -10,11 +10,7 @@ import org.aeonbits.owner.Config;
 })
 public interface UrlConfig extends Config {
     @Key("baseUrl")
-    @DefaultValue("https://www.eldorado.ru/")
+    @DefaultValue("https://www.chitai-gorod.ru/")
     String baseURL();
-
-    @Key("downloadFileUrl")
-    @DefaultValue("https://www.eldorado.ru/b2b/")
-    String downloadFileURL();
 
 }
