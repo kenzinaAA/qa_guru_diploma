@@ -40,7 +40,8 @@ public class WebDriver {
                 "--enable-automation",
                 "--disable-popup-blocking",
                 "--disable-notifications",
-                "--disable-gpu"
+                "--disable-gpu",
+                "--user-data-dir=/tmp/selenoid-profile-" + System.nanoTime()
         );
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
