@@ -36,6 +36,7 @@ public class WebDriver {
         // Настройки Chrome
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments(
+                "--headless=new",
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
                 "--disable-gpu",
