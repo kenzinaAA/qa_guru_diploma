@@ -25,7 +25,7 @@ public class MainPage {
     // Метод открытия главной страницы
     public MainPage open() {
         step("Открыть главную страницу сайта", () -> {
-            Selenide.open("/");
+            Selenide.open();
             sleep(2000);
             closePopupsIfPresent();
         });
