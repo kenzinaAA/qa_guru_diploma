@@ -12,18 +12,17 @@ public class WebDriver {
     private static final WebConfig CONFIG = ConfigFactory.create(WebConfig.class, System.getProperties());
     private static final UrlConfig URL_CONFIG = ConfigFactory.create(UrlConfig.class, System.getProperties());
 
-    public static final String BASE_URL = URL_CONFIG.baseURL();
-
     public static void configure() {
 
         // Общие настройки Selenide
+        Configuration.baseUrl = URL_CONFIG.baseUrl();
         Configuration.browser = CONFIG.browser();
         Configuration.browserVersion = CONFIG.browserVersion();
         Configuration.browserSize = CONFIG.browserSize();
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        String remoteUrl = CONFIG.remoteURL();
+        String remoteUrl = CONFIG.remoteUrl();
         if (remoteUrl != null && !remoteUrl.isEmpty()) {
             if (!CONFIG.user().isEmpty() && !CONFIG.password().isEmpty()) {
                 remoteUrl = format("https://%s:%s@%s", CONFIG.user(), CONFIG.password(), remoteUrl.replace("https://", ""));

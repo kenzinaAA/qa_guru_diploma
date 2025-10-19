@@ -4,8 +4,8 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "file:local.properties",   // локальные настройки
-        "file:remote.properties",  // удалённые настройки (например BrowserStack)
+        "classpath:config/local.properties",   // локальные настройки
+        "classpath:config/remote.properties",  // удалённые настройки (например BrowserStack)
         "system:properties"        // можно переопределить через -D
 })
 public interface WebConfig extends Config {
@@ -22,9 +22,9 @@ public interface WebConfig extends Config {
     @DefaultValue("1920x1080")
     String browserSize();
 
-    @Key("remoteURL")
+    @Key("remoteUrl")
     @DefaultValue("")
-    String remoteURL();
+    String remoteUrl();
 
     @Key("user")
     @DefaultValue("")
