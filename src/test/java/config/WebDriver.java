@@ -12,6 +12,8 @@ public class WebDriver {
     private static final WebConfig CONFIG = ConfigFactory.create(WebConfig.class, System.getProperties());
     private static final UrlConfig URL_CONFIG = ConfigFactory.create(UrlConfig.class, System.getProperties());
 
+    public static final String BASE_URL = URL_CONFIG.baseUrl();
+
     public static void configure() {
 
         // Общие настройки Selenide
@@ -24,6 +26,7 @@ public class WebDriver {
 
         String remoteUrl = CONFIG.remoteUrl();
         if (remoteUrl != null && !remoteUrl.isEmpty()) {
+            System.out.println("!!!");
             if (!CONFIG.user().isEmpty() && !CONFIG.password().isEmpty()) {
                 remoteUrl = format("https://%s:%s@%s", CONFIG.user(), CONFIG.password(), remoteUrl.replace("https://", ""));
             }
@@ -32,6 +35,16 @@ public class WebDriver {
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
         }
+
+        // Настройки Chrome
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments(
+                "--no-sandbox",
+                "--enable-automation",
+                "--disable-popup-blocking",
+                "--disable-notifications",
+                "--disable-gpu"
+        );
 
         Configuration.browserCapabilities = capabilities;
     }

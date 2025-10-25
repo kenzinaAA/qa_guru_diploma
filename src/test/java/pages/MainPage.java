@@ -6,7 +6,7 @@ import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static config.WebDriver.configure;
+import static config.WebDriver.BASE_URL;
 import static io.qameta.allure.Allure.step;
 
 public class MainPage {
@@ -25,7 +25,7 @@ public class MainPage {
     // Метод открытия главной страницы
     public MainPage open() {
         step("Открыть главную страницу сайта", () -> {
-            Selenide.open();
+            Selenide.open(BASE_URL);
             sleep(2000);
             closePopupsIfPresent();
         });
