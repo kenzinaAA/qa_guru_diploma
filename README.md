@@ -1,6 +1,6 @@
 # 🚀 Дипломный проект по UI тестированию интернет-магазина [Читай-город]([https://www.chitai-gorod.ru]).
 
-![]([https://raw.githubusercontent.com/SvetlanaVaskevich/qa_guru_diplom/main/images/screens/Jenkins_UI.png](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo-chitay-gorod.png))
+![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo-chitay-gorod.png)
 
 > Проект автоматизированного тестирования UI.
 
@@ -46,13 +46,13 @@ src/test/java/
 ├── 📁 helpers/                     # 
 │   └── Attach.java                  # 
 ├── pages/                          #
-│   └── MainPage.java               # 
-├── 📁 tests/                         # 
-│   ├── BasicTests.java           # 
-│   └── TestBase.java           # 
-└── 📁 resources/                  #
-    ├── local.properties               #
-    ├── remote.properties              # 
+│   └── MainPage.java                # 
+├── 📁 tests/                       # 
+│   ├── BasicTests.java              # 
+│   └── TestBase.java                # 
+└── 📁 resources/                   #
+    ├── local.properties              #
+    ├── remote.properties             # 
     └── urls.properties               # 
 ````
 
@@ -108,9 +108,9 @@ _browserVersion_ - версия браузера
 
 _browserSize_ - размер окна браузера при выполнении тестов
 
-![](ссылка)
+![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/JenkinsRun.png)
 
-## Информация о тестах в [Allure report](ссылка)
+## Информация о тестах в [Allure report](https://jenkins.autotests.cloud/user/kenzinaaa/my-views/view/all/job/Diploma_Chitai-Gorod_UI/allure/)
 
 ### Главное окно
 
@@ -119,19 +119,19 @@ _browserSize_ - размер окна браузера при выполнени
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/Geo-filter.png)
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/AllureJenkins.png)
 
-Тесты запущенные локально выполняются без ошибок. Окно локального отчета Allure:
+Тесты, запущенные локально выполняются без ошибок. Окно локального отчета Allure:
 
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/LocalAllure.png)
 
-####Список тестов с примером выполнения одного из них
+#### Список тестов с примером выполнения одного из них
 
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/TestCases.png)
 
-####Разделение тестов на группы по аннотации @Feature
+#### Разделение тестов на группы по аннотации @Feature
 
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/TestFeatures.png)
 
-####Подробное пошаговое выполнение теста
+#### Подробное пошаговое выполнение теста
 
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/TestSteps.png)
 
@@ -145,7 +145,7 @@ _browserSize_ - размер окна браузера при выполнени
 
 ## Интеграция с [AllureTestOps](https://allure.autotests.cloud/project/4975/)
 
-###Тест-кейсы с историей запусков
+### Тест-кейсы с историей запусков
 
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/TestOppsLaunches.png)
 
