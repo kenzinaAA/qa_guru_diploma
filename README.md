@@ -39,9 +39,9 @@ src/test/java/
 │   ├── BasicTests.java           # 
 │   └── TestBase.java           # 
 └── 📁 resources/                  #
-│   ├── local.properties               #
-│   ├── remote.properties              # 
-│   └── urls.properties               # 
+    ├── local.properties               #
+    ├── remote.properties              # 
+    └── urls.properties               # 
 ````
 
 ---
