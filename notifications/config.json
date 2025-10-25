@@ -5,7 +5,6 @@
     "comment": "UI",
     "reportLink": "https://jenkins.autotests.cloud/job/Diploma_Chitai-Gorod_UI/",
     "language": "ru",
-    "messenger": "telegram",
     "allureFolder": "build/reports/allure-report/allureReport",
     "enableChart": true
   },
