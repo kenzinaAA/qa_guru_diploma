@@ -1,0 +1,17 @@
+{
+  "base": {
+    "project": "Diploma_Chitai-Gorod_UI",
+    "environment": "Local Laptop",
+    "comment": "UI",
+    "reportLink": "https://jenkins.autotests.cloud/job/Diploma_Chitai-Gorod_UI/",
+    "language": "ru",
+    "messenger": "telegram",
+    "allureFolder": "build/reports/allure-report/allureReport",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "8432529449:AAEzWVSXAYFaH8G9bNQ1YW-rGtzvdRz4FLA",
+    "chat": "-1003201734160",
+    "replyTo": "@QAGuru_Kenzina_Bot"
+  }
+}

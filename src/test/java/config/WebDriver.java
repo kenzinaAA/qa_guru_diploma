@@ -33,17 +33,7 @@ public class WebDriver {
                 "--disable-gpu",
                 "--disable-popup-blocking",
                 "--disable-notifications",
-                "--disable-dev-shm-usage",
-                "--window-size=" + CONFIG.browserSize()
-        );
-
-        //Пытаемся обмануть спам-фильтр
-        chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                + "AppleWebKit/537.36 (KHTML, like Gecko) "
-                + "Chrome/118.0.5993.70 Safari/537.36");
-        chromeOptions.addArguments(
-                "--disable-blink-features=AutomationControlled",
-                "--disable-infobars"
+                "--disable-dev-shm-usage"
         );
 
         try {
