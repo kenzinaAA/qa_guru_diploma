@@ -149,7 +149,7 @@ _browserSize_ - размер окна браузера при выполнени
 
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/TestOppsLaunches.png)
 
-###Мануальный тест-кейс на наличие ссылки с правилами акции
+### Мануальный тест-кейс на наличие ссылки с правилами акции
 
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/TestOppsCasesManual.png)
 
