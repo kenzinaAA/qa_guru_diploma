@@ -5,6 +5,10 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import static java.lang.String.format;
 
 public class WebDriver {
@@ -45,7 +49,12 @@ public class WebDriver {
                 "--disable-notifications",
                 "--disable-gpu"
         );
-
+        try {
+            Path tmpProfile = Files.createTempDirectory("chrome-profile-");
+            chromeOptions.addArguments("--user-data-dir=" + tmpProfile.toAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Configuration.browserCapabilities = capabilities;
     }
 }
