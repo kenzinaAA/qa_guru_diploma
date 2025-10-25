@@ -55,6 +55,8 @@ public class WebDriver {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         Configuration.browserCapabilities = capabilities;
     }
 }
