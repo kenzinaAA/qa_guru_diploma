@@ -8,6 +8,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.String.format;
 
@@ -20,35 +22,21 @@ public class WebDriver {
 
     public static void configure() {
 
-        // Общие настройки Selenide
         Configuration.baseUrl = URL_CONFIG.baseUrl();
         Configuration.browser = CONFIG.browser();
         Configuration.browserVersion = CONFIG.browserVersion();
         Configuration.browserSize = CONFIG.browserSize();
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-
-        String remoteUrl = CONFIG.remoteUrl();
-        if (remoteUrl != null && !remoteUrl.isEmpty()) {
-            System.out.println("!!!");
-            if (!CONFIG.user().isEmpty() && !CONFIG.password().isEmpty()) {
-                remoteUrl = format("https://%s:%s@%s", CONFIG.user(), CONFIG.password(), remoteUrl.replace("https://", ""));
-            }
-            Configuration.remote = remoteUrl;
-
-            capabilities.setCapability("enableVNC", true);
-            capabilities.setCapability("enableVideo", true);
-        }
-
-        // Настройки Chrome
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments(
                 "--no-sandbox",
-                "--enable-automation",
+                "--disable-gpu",
                 "--disable-popup-blocking",
                 "--disable-notifications",
-                "--disable-gpu"
+                "--disable-dev-shm-usage",
+                "--window-size=" + CONFIG.browserSize()
         );
+
         try {
             Path tmpProfile = Files.createTempDirectory("chrome-profile-");
             chromeOptions.addArguments("--user-data-dir=" + tmpProfile.toAbsolutePath());
@@ -56,7 +44,23 @@ public class WebDriver {
             e.printStackTrace();
         }
 
+        String remoteUrl = CONFIG.remoteUrl();
+        if (remoteUrl != null && !remoteUrl.isEmpty()) {
+            if (!CONFIG.user().isEmpty() && !CONFIG.password().isEmpty()) {
+                remoteUrl = String.format("https://%s:%s@%s", CONFIG.user(), CONFIG.password(), remoteUrl.replace("https://", ""));
+            }
+            Configuration.remote = remoteUrl;
+
+            Map<String, Object> selenoidOptions = new HashMap<>();
+            selenoidOptions.put("enableVNC", true);
+            selenoidOptions.put("enableVideo", true);
+
+            chromeOptions.setCapability("selenoid:options", selenoidOptions);
+        }
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         Configuration.browserCapabilities = capabilities;
     }
+
 }
