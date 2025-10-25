@@ -116,8 +116,8 @@ _browserSize_ - размер окна браузера при выполнени
 
 Запуск тестов через Jenkins упирается в новый ВПН фильтр сайта Читай-город по геолокации.
 
-![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/Geo-filter.png)
 ![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/AllureJenkins.png)
+![](https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/Geo-filter.png)
 
 Тесты, запущенные локально выполняются без ошибок. Окно локального отчета Allure:
 
