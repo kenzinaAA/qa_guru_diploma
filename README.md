@@ -19,16 +19,16 @@
 ---
 <a id="технологии-и-инструменты"></a>
 ## 🛠 Технологии и инструменты, используемые в данном проекте
-[<img alt="Java" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Allure.svg" width="50"/>](https://github.com/allure-framework/allure2)
-[<img alt="IDEA" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Allure_EE.svg" width="50"/>](https://qameta.io/)
-[<img alt="Appium" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/GitHub.svg" width="50"/>](https://github.com/)
-[<img alt="Selenide" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Gradle.svg" width="50"/>](https://gradle.org/)
-[<img alt="Selenoid" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Idea.svg" width="50"/>](https://www.jetbrains.com/idea/)
-[<img alt="Android" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Java.svg" width="50"/>](https://www.java.com/)
-[<img alt="Browserstack" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Jenkins.svg" width="50"/>](https://www.jenkins.io/)
-[<img alt="Github" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Junit5.svg" width="50"/>](https://junit.org/junit5/) 
-[<img alt="JUnit 5" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Selenide.svg" width="50"/>](https://aerokube.com/selenoid/latest/)
-[<img alt="Gradle" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Telegram.svg" width="50"/>](https://telegram.org/)
+[<img alt="Allure" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Allure.svg" width="50"/>](https://github.com/allure-framework/allure2)
+[<img alt="Allure_EE" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Allure_EE.svg" width="50"/>](https://qameta.io/)
+[<img alt="Github" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/GitHub.svg" width="50"/>](https://github.com/)
+[<img alt="Gradle" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Gradle.svg" width="50"/>](https://gradle.org/)
+[<img alt="IDEA" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Idea.svg" width="50"/>](https://www.jetbrains.com/idea/)
+[<img alt="Java" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Java.svg" width="50"/>](https://www.java.com/)
+[<img alt="Jenkins" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Jenkins.svg" width="50"/>](https://www.jenkins.io/)
+[<img alt="JUnit 5" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Junit5.svg" width="50"/>](https://junit.org/junit5/) 
+[<img alt="Selenide" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Selenide.svg" width="50"/>](https://aerokube.com/selenoid/latest/)
+[<img alt="Telegram" height="50" src="https://github.com/kenzinaAA/qa_guru_diploma/blob/main/images/logo/Telegram.svg" width="50"/>](https://telegram.org/)
 
 В данном проекте автотесты написаны на **Java** с использованием фреймворка для тестирования **Selenide**. Для сборки проекта в среде **IntelliJ IDEA** используется **Gradle**.
 **JUnit5** задействован в качестве фреймворка модульного тестирования.
