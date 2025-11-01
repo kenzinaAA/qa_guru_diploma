@@ -45,11 +45,14 @@ dependencies {
 }
 
 tasks.withType(Test) {
-    useJUnitPlatform()
-    systemProperties(System.getProperties())
-    if (project.hasProperty('TEST_TAG') && project.TEST_TAG != 'ALL') {
-        includeTags project.TEST_TAG
+    useJUnitPlatform {
+        if (project.hasProperty('TEST_TAG') && project.TEST_TAG != 'ALL') {
+            includeTags project.TEST_TAG
+        }
     }
+
+    systemProperties(System.getProperties())
+
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
