@@ -4,8 +4,8 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:urls.properties",   // локальные настройки
-        "system:properties"        // можно переопределить через -D
+        "classpath:urls.properties",
+        "system:properties"
 })
 public interface UrlConfig extends Config {
     @Key("baseUrl")

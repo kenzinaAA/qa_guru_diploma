@@ -4,9 +4,9 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:local.properties",   // локальные настройки
-        "classpath:remote.properties",  // удалённые настройки (например BrowserStack)
-        "system:properties"        // можно переопределить через -D
+        "classpath:local.properties",
+        "classpath:remote.properties",
+        "system:properties"
 })
 public interface WebConfig extends Config {
 

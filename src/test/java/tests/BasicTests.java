@@ -8,10 +8,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import pages.MainPage;
+import pages.*;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
@@ -20,6 +18,11 @@ import static io.qameta.allure.Allure.step;
 public class BasicTests extends TestBase{
 
     MainPage mainPage = new MainPage();
+    SearchPage searchPage = new SearchPage();
+    AuthorPage authorPage = new AuthorPage();
+    BookPage bookPage = new BookPage();
+    CartPage cartPage = new CartPage();
+
     @DisplayName("Поиск товаров на двух языках")
     @ParameterizedTest(name = "Нахождение товара {1} в результатах поиска {0}")
     @Tag("BLOKER")
@@ -29,9 +32,8 @@ public class BasicTests extends TestBase{
             "тестирование, Тестирование веб-API"
     })
     void searchResultsTest(String searchItem, String requiredItem) {
-        mainPage.open()
-                .search(searchItem)
-                .checkBook(requiredItem, false);
+        mainPage.open().search(searchItem);
+        searchPage.findBookAndMaybePress(requiredItem, false);
     }
 
     @DisplayName("Добавление товаров в корзину")
@@ -40,12 +42,8 @@ public class BasicTests extends TestBase{
     @Feature("Корзина")
     void putIntoCartTest() {
         mainPage.open()
-                .scrollAndBuy(1);
-        step("Проверить, что у значка Корзины появился индикатор с числом 1", () ->
-                $("div.chg-indicator--bg-red.header-controls__indicator")
-                        .shouldBe(visible)
-                        .shouldHave(text("1"))
-        );
+                .scrollAndBuy(1)
+                .cartHasBook(1);
     }
 
     @DisplayName("Проверка функциональности корзины")
@@ -55,16 +53,14 @@ public class BasicTests extends TestBase{
     void actionsInCartTest() {
         mainPage.open()
                 .scrollAndBuy(2)
-                .goToCart()
-                .checkCart(2);
-        step("Удаляем один из товаров из корзины", () ->
-                $$("button.cart-item__delete-button").first().click()
-        );
-        mainPage.checkCart(1);
-        step("Нажать на кнопку восстановления удаленного товара", () ->
-                $("button.cart-item-deleted__button").shouldBe(visible).click()
-        );
-        mainPage.checkCart(2);
+                .goToCart();
+        cartPage.checkCart(2)
+                .deleteFirst();
+        sleep(300);
+        cartPage.checkCart(1)
+                .restoreBook();
+        sleep(300);
+        cartPage.checkCart(2);
     }
 
     @DisplayName("Проверяем, что уточнение поиска уменьшает количество найденных товаров")
@@ -72,16 +68,11 @@ public class BasicTests extends TestBase{
     @Tag("MINOR")
     @Feature("Поиск")
     void detailedSearchTest() {
-        int countPen = mainPage.open()
-                .search("Тетрадка")
-                .numberOfFound();
-        //step("Сбрасываем результаты поиска", () -> $("a.header-sticky__logo-link").click());
-        int countDetail = mainPage.open().
-                search("Тетрадка в клеточку").
-                numberOfFound();
-        step("Сравнить количество найденных товаров", () ->
-                Assertions.assertTrue(countPen>countDetail)
-        );
+         mainPage.open().search("Тетрадка");
+        int countPen = searchPage.numberOfFound();
+        mainPage.open().search("Тетрадка в клеточку");
+        int countDetail = searchPage.numberOfFound();
+        step("Сравнить количество найденных товаров", () -> Assertions.assertTrue(countPen>countDetail));
     }
 
     @DisplayName("Проверяем переход на карточку товара")
@@ -90,12 +81,9 @@ public class BasicTests extends TestBase{
     @Feature("Карточка товара")
     void bookTest() {
         String theBook = "Хоббит";
-        mainPage.open()
-                .search(theBook)
-                .checkBook(theBook, true);
-        String bookName = step("Проверить, что открылась карточка товара", () ->
-                $("h1.product-detail-page__title").text()
-        );
+        mainPage.open().search(theBook);
+        searchPage.findBookAndMaybePress(theBook, true);
+        String bookName = bookPage.getBookTitle();
         step("Проверка, что товар подходит", () -> Assertions.assertTrue(bookName.contains(theBook)));
     }
 
@@ -105,12 +93,9 @@ public class BasicTests extends TestBase{
     @Feature("Карточка товара")
     void adultRatingTest() {
         String adultBook = "Пятьдесят оттенков серого";
-        mainPage.open()
-                .search(adultBook)
-                .checkBook(adultBook, true);
-        step("Проверить наличие упреждающего окна", () ->
-                $("body.popmechanic-desktop.is-locked").exists()
-        );
+        mainPage.open().search(adultBook);
+        searchPage.findBookAndMaybePress(adultBook, true);
+        bookPage.checkForAdultScreen();
     }
 
     @DisplayName("Проверяем переход из книги на страничку автора")
@@ -119,13 +104,11 @@ public class BasicTests extends TestBase{
     @Feature("Карточка товара")
     void bookToAuthorTest() {
         String theBook = "Хоббит";
-        mainPage.open()
-                .search(theBook)
-                .checkBook(theBook, true);
-        step("Переход на страницу первого автора", () -> $$("ul.product-authors li a").first().click());
-        step("Проверить, что открылась нужная карточка автора", () ->
-                $("h1.author-page__title").shouldHave(text("Джон Рональд Руэл Толкин"))
-        );
+        String theAuthor = "Джон Рональд Руэл Толкин";
+        mainPage.open().search(theBook);
+        searchPage.findBookAndMaybePress(theBook, true);
+        bookPage.clickFirstAuthour();
+        authorPage.checkAuthorName(theAuthor);
     }
 
     @DisplayName("Проверяем поиск книги по isbn")
@@ -134,18 +117,13 @@ public class BasicTests extends TestBase{
     @Feature("Поиск")
     void bookInfoTest() {
         String theBook = "Хоббит";
-        mainPage.open()
-                .search(theBook)
-                .checkBook(theBook, true);
-        String bookName = step("Извлечь полное название товара", () ->
-                $("h1.product-detail-page__title").text()
-        );
-        String isbn = step("Извлекаем isbn", () -> $("span[itemprop='isbn']").getText());
-        mainPage.search(isbn).checkBook(theBook, true);
-        step("Сверяем полные названия товаров после перехода", () ->
-                $("h1.product-detail-page__title").shouldHave(text(bookName))
-        );
+        mainPage.open().search(theBook);
+        searchPage.findBookAndMaybePress(theBook, true);
+        String bookName = bookPage.getBookTitle();
+        String isbn = bookPage.getISBN();
+        mainPage.open().search(isbn);
+        searchPage.findBookAndMaybePress(theBook, true);
+        bookPage.compareTitles(bookName);
     }
-
 
 }

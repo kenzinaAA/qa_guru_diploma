@@ -2,18 +2,23 @@ package tests;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import config.WebDriver;
+import drivers.WebDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 public class TestBase {
 
     @BeforeAll
     static void setup() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         WebDriver.configure();
+    }
+
+    @BeforeEach
+    public void restartListener(){
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach
